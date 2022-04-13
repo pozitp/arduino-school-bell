@@ -1,6 +1,11 @@
-# arduino-school-bell
-Automation of school bell on Arduino for my project. 
+# Автоматическая система подачи звонков в школе
+## ПРОЕКТ В РАЗРАБОТКЕ!
 
+* [Описание](#chapter-0)
+* [Файловая структура](#chapter-1)
+* [Схема подключения](#chapter-2)
+* [Компоненты](#chapter-3)
+* [Как прошить](#chapter-4)
+* [Описание кодовой базы](#chapter-5)
 
-
-* documentation will be later here
+## ПРОЕКТ В РАЗРАБОТКЕ! В ДАННЫЙ МОМЕНТ НЕТ ПОДДЕРЖКИ ПЕРЕВОДА ВРЕМЕНИ И УПРАВЛЕНИЯ РЕЛЕ!

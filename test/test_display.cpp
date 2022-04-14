@@ -8,10 +8,16 @@
 int status;
 hd44780_I2Cexp lcd;
 
-int main() {
+int main()
+{
     init();
     status = lcd.begin(LCD_COLS, LCD_ROWS);
-    for (int i = 0; i < 16; i++) {
+    if (status)
+    {
+        hd44780::fatalError(status);
+    }
+    for (int i = 0; i < 16; i++)
+    {
         lcd.setCursor(0, 0);
         lcd.write(255);
         lcd.setCursor(0, 1);
@@ -19,7 +25,7 @@ int main() {
         delay(500);
     }
     lcd.clear();
-    lcd.print("TEST SUCCESS");
+    lcd.print(F("TEST SUCCESS"));
     delay(5000);
     lcd.clear();
     return 0;

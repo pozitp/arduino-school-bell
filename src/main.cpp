@@ -26,7 +26,7 @@ int main()
   }
 
   status = lcd.begin(LCD_COLS, LCD_ROWS);
-  if (lcd.begin(LCD_COLS, LCD_ROWS))
+  if (status)
   {
     hd44780::fatalError(status);
   }
@@ -45,8 +45,13 @@ int main()
   {
     now = rtc.now();
     timeFormatted = now.hour() * 10000L + now.minute() * 100 + now.second();
-    if (now.dayOfTheWeek() != 0 && now.dayOfTheWeek() != 6)
+    switch (now.dayOfTheWeek())
     {
+    case 0:
+    case 6:
+      break;
+
+    default:
       for (int x = 0; x < 16; x = x + 1)
       {
         if (schedule[x] == timeFormatted)
@@ -60,7 +65,9 @@ int main()
           }
         }
       }
+      break;
     }
+
     uint16_t ms2 = millis() & 0xFFFF;
     if (ms2 - tmr2 > 1000)
     {
@@ -85,17 +92,19 @@ int main()
       lcd.print(F("               "));
 #else
       lcd.setCursor(0, 1);
-      if (isLesson == true)
+      switch (isLesson)
       {
+      case true:
         lcd.print(F("\2"));
         lcd.print(F("POK"));
         lcd.print(F("                "));
-      }
-      else
-      {
+        break;
+
+      default:
         lcd.print(F("\1"));
         lcd.print(F("EPEMEHA"));
         lcd.print(F("                "));
+        break;
       }
 #endif
     }

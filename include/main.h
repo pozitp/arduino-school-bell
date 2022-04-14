@@ -18,8 +18,7 @@ int status;
 DateTime now;
 long timeFormatted;
 bool isLesson = false;
-int16_t tmr;
-int16_t tmr2;
+uint16_t tmr, tmr2;
 byte letter_P[8] = {
     B11111,
     B10001,

@@ -1,10 +1,16 @@
 #include <Arduino.h>
 #include "main.h"
+#include "button.h"
 
 int main()
 {
   init();
-  pinMode(BUTTON_PIN, INPUT);
+  pinMode(RIGHT_BTN_PIN, INPUT_PULLUP);
+  pinMode(CENTRAL_BTN_PIN, INPUT_PULLUP);
+  pinMode(LEFT_BTN_PIN, INPUT_PULLUP);
+  /*   button leftBtn(LEFT_BTN_PIN);
+    button rightBtn(RIGHT_BTN_PIN);
+    button centralBtn(CENTRAL_BTN_PIN); */
   pinMode(BELL_PIN, OUTPUT);
 
   if (!rtc.begin())
@@ -32,6 +38,7 @@ int main()
   }
   lcd.createChar(1, letter_P);
   lcd.createChar(2, letter_Y);
+  lcd.rightToLeft();
   lcd.setCursor(2, 0);
   lcd.print(F("AUTO BELL"));
   lcd.setCursor(5, 1);
@@ -45,6 +52,11 @@ int main()
   {
     now = rtc.now();
     timeFormatted = now.hour() * 10000L + now.minute() * 100 + now.second();
+    if (digitalRead(LEFT_BTN_PIN) == 0)
+    {
+      // TODO: Extend this
+      rtc.adjust(DateTime(now.year(), now.month(), now.day(), now.hour(), now.minute() + 1, now.second()));
+    }
     switch (now.dayOfTheWeek())
     {
     case 0:

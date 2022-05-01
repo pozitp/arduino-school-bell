@@ -3,9 +3,9 @@
 #include <hd44780.h>
 #include <hd44780ioClass/hd44780_I2Cexp.h>
 
-#define RIGHT_BTN_PIN 2
+/* #define RIGHT_BTN_PIN 2
 #define CENTRAL_BTN_PIN 3
-#define LEFT_BTN_PIN 4
+#define LEFT_BTN_PIN 4 */
 #define BELL_PIN 9
 #define TIME_DISPLAY_ZERO '0'
 #define TIME_DISPLAY_COLON ':'
@@ -20,8 +20,8 @@ int status;
 DateTime now;
 long timeFormatted;
 bool isLesson = false;
-bool ledState = false;
-uint16_t tmr, tmr2, ms3;
+unsigned long tmr, tmr2, ms3;
+int bellState = LOW;
 byte letter_P[8] = {
     B11111,
     B10001,
